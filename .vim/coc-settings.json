@@ -4,13 +4,20 @@
 	"languageserver": {
         "ccls": {
 			"command": "ccls",
-			"filetypes": ["c", "cc", "cpp", "c++"],
-			"rootPatterns": [".ccls", "compile_commands.json", ".git/", ".root"],
+			"filetypes": ["c", "cc", "cpp", "c++", "cuda", "objc", "objcpp"],
+			"rootPatterns": [".ccls", "compile_commands.json","build/compile_commands.json", ".git/", ".root"],
 			"initializationOptions": {
 				"cache": {
-					"directory": ".cache/ccls"
+					"directory": ".ccls-cache"
 				},
-                "highlight": {"lsRanges": true }
+                "highlight": {"lsRanges": true },
+                "client": {
+                          "snippetSupport": true
+                        },
+                "compilationDatabaseDirectory": "build",
+                "clang": { 
+                          "extraArgs": [ "-std=c++20" ] 
+                        }
 			}
 		}
     }
