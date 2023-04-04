@@ -2,17 +2,35 @@
 
 
 
+" 设置<leader>为空格键
+let mapleader = "\<Space>"
+
+
+" 在状态行显示命令
+" showcmd
+set sc
+
 " 搜索不区分大小写
 " ignorecase
 set ic
 
+" 自动写入(不包含"edit","quit"等命令,如需包含参见autowriteall)
+" 当在执行一些跳转,离开本缓冲区的命令时自动写入文件,如:
+" :next,:last,:stop,:suspend,CTRL-],CTRL-O,'{A-Z0-9}等
+" autowrite
+set aw
 
-
-" 设置<leader>为空格键
-let mapleader = "\<Space>"
+" 搜索智能区分大小写
+" 本选项的作用是配合上面不区分大小写的设置
+" 这样,只要包含一个大写字母则搜索时区分大小写
+" smartcase
+set scs
 
 set termguicolors   " 启用true color
 
+" 是否把超出编辑区显示范围的行,按多行显示
+" wrap
+set wrap
 set nu!
 "1.设置（软）制表符宽度为4
 set tabstop=4
@@ -28,13 +46,20 @@ set autoindent
 set cindent
 
 set modifiable
-
+" 禁止跳转时光标移动到非空字符
+" 默认当跳转时光标会移动到那一行的非空字符处
+" nostartofline
+set nosol
 
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
 nnoremap <C-q> :q<CR>
 inoremap <C-q> <Esc>:q<CR>
 set mouse=a
+
+
+
+
 
 call plug#begin('~/.vim/plugged')
 
@@ -67,7 +92,7 @@ Plug 'skywind3000/vim-preview'
 " 执行PrevimOpen命令在浏览器中实时预览所编写的markdown文件
 Plug 'kannokanno/previm', { 'for': 'markdown' }
     let g:previm_open_cmd = 'xdg-open'
-
+map <leader>md :PrevimOpen<CR>
 
 call plug#end()
 
@@ -84,6 +109,9 @@ colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
 set background=dark
+syntax on
+
+
 nnoremap <leader>f :Autoformat<CR>
 
 
