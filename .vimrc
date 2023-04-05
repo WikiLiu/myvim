@@ -1,7 +1,11 @@
 "之后会在readme中添加所有快捷按键说明
 
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 
+
+set whichwrap=b,s,<,>,[,]
 " 设置<leader>为空格键
 let mapleader = "\<Space>"
 
@@ -99,8 +103,8 @@ call plug#end()
 
 "补全代码塊--------------------------------------------------------------------
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-h>"
-let g:UltiSnipsJumpBackwardTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
 
@@ -274,10 +278,6 @@ endfunction
 nnoremap <leader>bc :call CloseListedBuffers()<cr>
 " 删除所有buffer,除了当前的
 nnoremap <leader>bo :call CloseOtherBuffers()<cr>
-" 切换到上一个buffer
-nnoremap <leader>bp :bp<cr>
-" 切换到下一个buffer
-nnoremap <leader>bn :bn<cr>
 " 切换到之前的buffer
 nnoremap <leader>0 :b#<cr>
 
@@ -339,12 +339,12 @@ let g:Lf_PreviewCode = 1                          " 预览代码
 let g:Lf_RootMarkers = ['.root', 'compile_command.json', '.git'] "你的根目录标志
 let g:Lf_WorkingDirectoryMode = 'A'              " 设置 LeaderF 工作目录为项目根目录，如果不在项目中，则为当前目录。
 let g:Lf_ShortcutF = "<Leader>ff"
-let g:Lf_ShortcutB = "<Leader>bl"
-nnoremap <silent><Leader>ffc :LeaderfFunctionAll<CR> " 搜索函数
-nnoremap <silent><Leader>fbf :LeaderfBufTagAll<CR>   " 搜索缓冲区中的 tag
-nnoremap <silent><Leader>ftg :LeaderfTag<CR>         " 搜索项目中的 tag
-nnoremap <silent><leader>fhp :LeaderfHelp<CR>        " 搜索 vim help
-nnoremap <Leader>rg :Leaderf rg<Space>             " 调用 ripgrep 查找字符串
+let g:Lf_ShortcutB = "<Leader>fb"
+nnoremap <silent><Leader>fc :LeaderfFunctionAll<CR> " 搜索函数
+nnoremap <silent><Leader>fbt :LeaderfBufTagAll<CR>   " 搜索缓冲区中的 tag
+nnoremap <silent><Leader>ft :LeaderfTag<CR>         " 搜索项目中的 tag
+nnoremap <silent><leader>fh :LeaderfHelp<CR>        " 搜索 vim help
+nnoremap <Leader>fg :Leaderf rg<Space>             " 调用 ripgrep 查找字符串
 let g:Lf_UseDevIcons = 0
 
 
@@ -397,11 +397,9 @@ function! CheckBackspace() abort
 endfunction
 
 " Use <c-space> to trigger completion
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+
+inoremap <silent><expr> <c-@> coc#refresh()
+
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
