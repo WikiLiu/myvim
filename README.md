@@ -54,7 +54,7 @@ apt install libstdc++-12-dev
 - `C-b` :Back scroll
 - Mappings for CocList <space><space> 具体可见coc文档
 
-### [tagis](https://github.com/skywind3000/gutentags_plus)
+### [tags](https://github.com/skywind3000/gutentags_plus)
 	这个不好用 建议用coc自带的跳转将键盘映射c改为了g 
 - `C-]` :上一个Tags
 - `C-t` :下一个Tags
