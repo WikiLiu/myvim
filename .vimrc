@@ -49,20 +49,13 @@ set autoindent
 "4.使用 C/C++ 语言的自动缩进方式
 set cindent
 
-set modifiable
-" 禁止跳转时光标移动到非空字符
-" 默认当跳转时光标会移动到那一行的非空字符处
-" nostartofline
-set nosol
+
 
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
 nnoremap <C-q> :q<CR>
 inoremap <C-q> <Esc>:q<CR>
 set mouse=a
-
-
-
 
 
 call plug#begin('~/.vim/plugged')
@@ -89,6 +82,17 @@ Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/vim-preview'
 
 
+"终端------------------------------------------------------------
+" 设置打开终端时占比较小
+let g:terminal_size = 20
+
+" 将光标移动到左侧目录树
+nnoremap <leader>tt :wincmd h<CR> :belowright terminal<CR>
+ 
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Down> <C-w>j
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Right> <C-w>l
 
 
 "####################
