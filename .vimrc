@@ -3,7 +3,8 @@
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-
+" no-plugin -------------------------------------------------------------------
+set path+=**
 
 set whichwrap=b,s,<,>,[,]
 " 设置<leader>为空格键
@@ -49,7 +50,7 @@ set autoindent
 "4.使用 C/C++ 语言的自动缩进方式
 set cindent
 
-
+filetype plugin on
 
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
@@ -145,7 +146,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
 
-"高亮---------------------------------------------------------------------------------------------------------
+"高亮-----------------------------------------------------------------------
 let g:lsp_cxx_hl_use_text_props = 1
 
 
