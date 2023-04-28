@@ -1,7 +1,7 @@
 import os
 
 # 创建目录
-directory = os.path.expanduser("~/.config/nvim/lua")
+directory = os.path.expanduser("~/.config/nvim/lua/plugins")
 os.makedirs(directory, exist_ok=True)
 
 # 写入配置文件
@@ -69,7 +69,82 @@ if not os.path.exists(init_lua_path):
 
 # 在文件末尾添加一行
 with open(init_lua_path, "a") as f:
-    f.write('vim.cmd([[colorscheme monokai-pro]])\n')
+    f.write("""
+vim.cmd([[colorscheme monokai-pro]])
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
+require("lspconfig").clangd.setup({ capabilities = capabilities })
+""")
+
+
+# 获取 init.lua 文件路径
+nvim_dir = os.path.expanduser("~/.config/nvim/lua/plugins")
+init_lua_path = os.path.join(nvim_dir, "alpha.lua")
+
+
+# 在文件末尾添加一行
+with open(init_lua_path, "w") as f:
+    f.write("""
+    return {
+  "goolord/alpha-nvim",
+  cmd = "Alpha",
+  opts = function()
+    local dashboard = require "alpha.themes.dashboard"
+    dashboard.section.header.val = {
+"                    🟩🟩🟩🟩🟩",
+"              🟩🟩🟩🟩🟩🟩🟩🟩⬛⬛⬛⬛⬛⬛",
+"            🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨⬛",
+"          🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨⬛",
+"      🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨⬛",
+"  🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟧🟨🟨⬛",
+"🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟫🟫",
+"⬛🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟧🟨🟨⬛",
+"  ⬛⬛⬛⬛🟩🟩🟩🟩🏻🟨🟩🟨🟨🟨🟨🏻🟨⬛",
+"          ⬛⬛🟩🟩🏻🏻🟨⬛🟧🟨🏻⬛🟫⬛",
+"          ⬛🟧⬛⬛🟧🏻🟨⬛🟨🟧🏻⬜🟦🟨⬛",
+"          ⬛🟧🟫⬛⬛🟧⬛⬛🟨🟫🏻⬜🟦🟨⬛",
+"          ⬛🟧🟫⬛⬛🟧⬛🟨🟨🟫🏻🏻🟨⬛",
+"          ⬛🟧🟫⬛⬛⬛⬛🟨🟫🟧🟨🟨⬛      ⬛",
+"          ⬛🟧🟧🟧⬛🟩⬛🟨⬛⬛⬛⬛⬜🟫🟫⬛🟦⬛🟦🟦🟦🟦🟦🟦",
+"            ⬛🟧⬛⬛🟩🟩⬛🟩🟩🟩🟩🟩🏻🏻⬛🟦⬛🏽🏽🏽🏽🏽🏽🟦",
+"              ⬛⬛⬛🟩🟩🟩🟩🟩🟩🟩🟩🏻🏻⬛🟦⬛🏽🏽🏽🏽🏽🏽🟦",
+"              🟫⬛🟩⬛🟩🟩🟩🟩🟩🟩🟩⬛⬛⬛🟦⬛🟦🟦🟦🟦🟦🟦",
+"            ⬛🟫⬛🟩🟩⬛⬛⬛⬛⬛🟩🟩⬛    ⬛⬛",
+"            ⬛🟫⬛🟩🟩🟩🟩🟩🟩🟩🟩⬛⬛⬛",
+"            ⬛⬛🟫⬛🟩🟩🟩🟩🟩🟩⬛🟥🟥🟥⬛",
+"              ⬛⬛⬛⬛⬛⬛⬛⬛⬛🟥🟥🟥🟥🟥⬛",
+"                                ⬛⬛⬛⬛⬛",
+	}
+    dashboard.section.header.opts.hl = "DashboardHeader"
+
+    local button = require("astronvim.utils").alpha_button
+    dashboard.section.buttons.val = {
+      button("LDR n", "  New File  "),
+      button("LDR f f", "  Find File  "),
+      button("LDR f o", "  Recents  "),
+      button("LDR f w", "  Find Word  "),
+      button("LDR f '", "  Bookmarks  "),
+      button("LDR S l", "  Last Session  "),
+    }
+
+    dashboard.config.layout[1].val = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) }
+    dashboard.config.layout[3].val = 5
+    dashboard.config.opts.noautocmd = true
+    return dashboard
+  end,
+  config = require "plugins.configs.alpha",
+}
+    """)
+
+
+
+
+
+
+
+
+
+
 
 
 
