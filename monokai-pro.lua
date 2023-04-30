@@ -30,7 +30,8 @@ return {
         },
         override = function(c)
           return {
-            ColorColumn = { bg = c.base.dimmed3 },
+            -- ColorColumn = { bg = c.base.dimmed3 },
+            ColorColumn = { bg = '#1c1c1c' },
             -- Mine
             DashboardRecent = { fg = c.base.magenta },
             DashboardProject = { fg = c.base.blue },
