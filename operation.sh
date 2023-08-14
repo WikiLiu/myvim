@@ -9,7 +9,7 @@ mv .vimrc ~
 sudo apt install ctags
 sudo apt install universal-ctags
 sudo apt install python
-https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.xz
+wget https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.xz
 tar xzJF node-v18.16.0-linux-x64.tar.xz
 xz -d node-v18.16.0-linux-x64.tar.xz
 tar -xvf node-v18.16.0-linux-x64.tar
