@@ -29,7 +29,6 @@ filetype indent on   " Enable filetype-specific indenting
 set autoread          " Automatically reload files when they change
 filetype on
 
-
 inoremap jj <Esc>
 set number
 augroup relativenumbertoggle
@@ -38,10 +37,7 @@ augroup relativenumbertoggle
 	autocmd BufLeave,FocusLost,WinLeave,InsertEnter * if &number | set norelativenumber | endif
 augroup END
 
-
 " 粘贴时保持格式
 set paste
-" 点击光标不会换,用于复制
-set mouse-=a           " 在所有的模式下面打开鼠标。
 set selection=exclusive
 set selectmode=mouse,key
