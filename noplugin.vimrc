@@ -7,35 +7,18 @@ set nocompatible
 " Enable syntax highlighting
 syntax enable
 
-" Enable filetype detection and plugins
-filetype plugin on
-
 " Set the path to include subdirectories for file searching
 set path+=**
 
-" Create a custom command to generate tags with ctags
-command! MakeTags !ctags -R .
-
-" Map a command to insert a predefined HTML skeleton
-nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
-
-" Set the 'makeprg' for running RSpec tests with the QuickfixFormatter
-set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
-
-" Customize the cursor shape in the terminal
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
 " Define special character behavior in 'whichwrap'
 set whichwrap=b,s,<,>,[.]
+set wrap             " Wrap lines
 
 " Miscellaneous settings
 set sc               " Smart case in search
 set ic               " Incremental search
 set aw               " Automatically write the file when it's modified
 set scs              " Smart case for search patterns
-set termguicolors    " Use true colors in terminal
-set wrap             " Wrap lines
 set tabstop=4        " Tab width
 set softtabstop=4    " Soft tab width
 set shiftwidth=4     " Shift width
@@ -44,6 +27,7 @@ set cindent          " C-style auto-indent
 set history=1000     " Maximum number of command history entries
 filetype indent on   " Enable filetype-specific indenting
 set autoread          " Automatically reload files when they change
+filetype on
 
 
 inoremap jj <Esc>
@@ -53,3 +37,11 @@ augroup relativenumbertoggle
 	autocmd BufEnter,FocusGained,WinEnter,InsertLeave * if &number | set relativenumber | endif
 	autocmd BufLeave,FocusLost,WinLeave,InsertEnter * if &number | set norelativenumber | endif
 augroup END
+
+
+" 粘贴时保持格式
+set paste
+" 点击光标不会换,用于复制
+set mouse-=a           " 在所有的模式下面打开鼠标。
+set selection=exclusive
+set selectmode=mouse,key
